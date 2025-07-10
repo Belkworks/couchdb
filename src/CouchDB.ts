@@ -19,11 +19,11 @@ export class CouchDB {
 		return new Database(this.client, name);
 	}
 
-	createDatabase(name: string) {
+	async createDatabase(name: string) {
 		return this.client.put({ path: `/${name}` });
 	}
 
-	listDatabases() {
+	async listDatabases() {
 		return this.client.get<string[]>({ path: "/_all_dbs" });
 	}
 }
