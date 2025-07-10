@@ -16,6 +16,10 @@
     "access": "public",
     "registry": "https://npm.pkg.github.com/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Belkworks/couchdb.git"
+  },
   "devDependencies": {
     "@rbxts/compiler-types": "3.0.0-types.0",
     "@rbxts/types": "^1.0.861",
