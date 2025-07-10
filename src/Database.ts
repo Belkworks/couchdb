@@ -24,7 +24,7 @@ export class Database {
 		});
 	}
 
-	async get<T = object>(id: string, rev?: string) {
+	async get<T extends object = object>(id: string, rev?: string) {
 		return this.client.get<T & BaseDocument>({
 			path: `/${this.name}/${id}`,
 			query: { rev },
