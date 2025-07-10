@@ -16,8 +16,8 @@ importers:
         specifier: 3.0.0-types.0
         version: 3.0.0-types.0
       '@rbxts/types':
-        specifier: ^1.0.855
-        version: 1.0.855
+        specifier: ^1.0.861
+        version: 1.0.861
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.33.0
         version: 8.33.0(@typescript-eslint/parser@8.33.0(eslint@9.28.0)(typescript@5.8.3))(eslint@9.28.0)(typescript@5.8.3)
@@ -128,8 +128,8 @@ packages:
   '@rbxts/services@1.5.5':
     resolution: {integrity: sha512-Hu7QH2ecefS60zpakKG3T2vgABydoOJqpSG7nXr59wFAbPk/cA+OcsntYPHUWyHAat0VFGZ5jNZLTLdiqfssvg==}
 
-  '@rbxts/types@1.0.855':
-    resolution: {integrity: sha512-Glw6Yj+rL5rM5ow0Q2d254LO+g/2hMMdQwOkRKgf1SzS5EqK1gJ0sX93mUwm6tXN6dS3MfPORwPM0VP048Jrjg==}
+  '@rbxts/types@1.0.861':
+    resolution: {integrity: sha512-WYIODP9WM7r2uc7+M6PA38yeSKf4bvIrh4MTbk4pvb1vzLwYlnJ3tq9q4SaI5e8BQsNWMSjXcI+s9p4tXY4v5A==}
 
   '@roblox-ts/luau-ast@2.0.0':
     resolution: {integrity: sha512-cmMi093IdwBOLVxwuordhM8AmtbyTIyRpsTbB0D/JauidW4SXsQRQowSwWjHo4QP0DRJBXvOIlxtqEQi50uNzQ==}
@@ -894,7 +894,7 @@ snapshots:
 
   '@rbxts/services@1.5.5': {}
 
-  '@rbxts/types@1.0.855': {}
+  '@rbxts/types@1.0.861': {}
 
   '@roblox-ts/luau-ast@2.0.0': {}
 
