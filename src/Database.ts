@@ -11,6 +11,17 @@ type DocumentResponse = {
 	rev: string;
 };
 
+type DocumentDiscriminator = string | { id: string; rev?: string };
+
+type MangoQuery<T> = {
+	selector: Partial<T> & object;
+	limit?: number;
+	skip?: number;
+	bookmark?: string;
+	sort?: (string | { [key: string]: "asc" | "desc" })[];
+	fields?: (keyof T)[];
+};
+
 export class Database {
 	constructor(
 		private readonly client: RequestClient,
@@ -46,10 +57,17 @@ export class Database {
 		});
 	}
 
-	async bulkGet<T extends object = object>(ids: (string | { id: string; rev?: string })[]) {
+	async bulkGet<T extends object = object>(ids: DocumentDiscriminator[]) {
 		return this.client.post<{ results: { id: string; docs: T & BaseDocument }[] }>({
 			path: `/${this.name}/_all_docs`,
 			body: { keys: ids.map((id) => (typeIs(id, "string") ? { id } : id)) },
+		});
+	}
+
+	async find<T extends object = object>(query: MangoQuery<T & BaseDocument>) {
+		return this.client.post<{ docs: (T & BaseDocument)[]; bookmark: string }>({
+			path: `/${this.name}/_find`,
+			body: query,
 		});
 	}
 }
