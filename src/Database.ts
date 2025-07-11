@@ -46,7 +46,7 @@ export class Database {
 		});
 	}
 
-	async bulkGet<T = object>(ids: (string | { id: string; rev?: string })[]) {
+	async bulkGet<T extends object = object>(ids: (string | { id: string; rev?: string })[]) {
 		return this.client.post<{ results: { id: string; docs: T & BaseDocument }[] }>({
 			path: `/${this.name}/_all_docs`,
 			body: { keys: ids.map((id) => (typeIs(id, "string") ? { id } : id)) },
