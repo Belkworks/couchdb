@@ -22,6 +22,13 @@ type MangoQuery<T> = {
 	fields?: (keyof T)[];
 };
 
+type ViewOptions = {
+	key?: string;
+	group?: boolean;
+	limit?: number;
+	skip?: number;
+};
+
 export class Database {
 	constructor(
 		private readonly client: RequestClient,
@@ -58,16 +65,30 @@ export class Database {
 	}
 
 	async bulkGet<T extends object = object>(ids: DocumentDiscriminator[]) {
-		return this.client.post<{ results: { id: string; docs: T & BaseDocument }[] }>({
+		return this.client.post<{
+			results: { id: string; docs: T & BaseDocument }[];
+		}>({
 			path: `/${this.name}/_all_docs`,
 			body: { keys: ids.map((id) => (typeIs(id, "string") ? { id } : id)) },
 		});
 	}
 
 	async find<T extends object = object>(query: MangoQuery<T & BaseDocument>) {
-		return this.client.post<{ docs: (T & BaseDocument)[]; bookmark: string }>({
+		return this.client.post<{
+			docs: (T & BaseDocument)[];
+			bookmark: string;
+		}>({
 			path: `/${this.name}/_find`,
 			body: query,
+		});
+	}
+
+	async view(ddoc: string, view: string, options: ViewOptions) {
+		return this.client.get<{
+			rows: { key: string; value: number }[];
+		}>({
+			path: `/${this.name}/_design/${ddoc}/_view/${view}`,
+			query: options,
 		});
 	}
 }
