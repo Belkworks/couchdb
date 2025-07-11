@@ -3,7 +3,7 @@ import { RequestClient } from "./RequestClient";
 
 type CouchDBOptions = {
 	url: string;
-	// TODO: auth options
+	headers?: HttpHeaders;
 };
 
 export class CouchDB {
@@ -12,6 +12,7 @@ export class CouchDB {
 	constructor(options: CouchDBOptions) {
 		this.client = new RequestClient({
 			baseUrl: options.url,
+			headers: options.headers,
 		});
 	}
 
