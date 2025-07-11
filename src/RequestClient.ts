@@ -30,7 +30,7 @@ type ClientOptions = {
 export class RequestClient {
 	constructor(private readonly options: ClientOptions) {}
 
-	private async execute<T>(request: Request): Promise<T> {
+	async execute<T>(request: Request): Promise<T> {
 		const url = `${this.options.baseUrl}${request.path}${queryString(request.query)}`;
 
 		const res = HttpService.RequestAsync({

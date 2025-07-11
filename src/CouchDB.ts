@@ -16,6 +16,10 @@ export class CouchDB {
 		});
 	}
 
+	execute(...args: Parameters<RequestClient["execute"]>) {
+		return this.client.execute(...args);
+	}
+
 	database(name: string) {
 		return new Database(this.client, name);
 	}
