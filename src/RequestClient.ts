@@ -33,11 +33,19 @@ export class RequestClient {
 	async execute<T>(request: Request): Promise<T> {
 		const url = `${this.options.baseUrl}${request.path}${queryString(request.query)}`;
 
+		const headers = {
+			"Content-Type": request.body ? "application/json" : undefined,
+			Accept: "application/json",
+		};
+
 		const res = HttpService.RequestAsync({
 			Method: request.method,
 			Url: url,
 			Body: request.body ? HttpService.JSONEncode(request.body) : undefined,
-			Headers: this.options.headers,
+			Headers: {
+				...headers,
+				...this.options.headers,
+			} as HttpHeaders,
 		});
 
 		assert(res.Success, `${request.method} ${request.path} ${res.StatusCode} ${res.StatusMessage}: ${res.Body}`);
