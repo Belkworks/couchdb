@@ -1,6 +1,6 @@
 {
   "name": "@belkworks/couchdb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "out/init.lua",
   "types": "out/index.d.ts",
   "scripts": {
